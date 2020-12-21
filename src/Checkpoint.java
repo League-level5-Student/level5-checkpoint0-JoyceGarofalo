@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class Checkpoint {
@@ -35,6 +36,9 @@ public class Checkpoint {
 	
 	public static ArrayList<CarMPGEntry> readCarMPGEntryDataFromFile(){
 		ArrayList<CarMPGEntry> carList = new ArrayList<CarMPGEntry>();
+		Stream<CarMPGEntry> strCars = carList.stream();
+		/*  1  */ System.out.println(strCars);
+		/*  2  */ 
 		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("auto-mpg.data"));
@@ -93,4 +97,5 @@ public class Checkpoint {
 		
 		return carList;
 	}
+	
 }
