@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Checkpoint {
@@ -30,15 +31,39 @@ public class Checkpoint {
 		 * 
 		 * 5. Print only the cars with "toyota" in the name.
 		 */
+		ArrayList<CarMPGEntry> carList = readCarMPGEntryDataFromFile();
+		System.out.println();
+		System.out.println("1:");
+		System.out.println();
+		carList.stream().forEach(e -> System.out.println(e.carName));
 		
+		System.out.println();
+		System.out.println("2:");
+		System.out.println();
+		carList.stream().forEach(e -> System.out.println(e.mpg));
+		
+		System.out.println();
+		System.out.println("3:");
+		System.out.println();
+		carList.stream().sorted((x,y) -> x.carName.compareTo(y.carName) >> 0).forEach(e -> System.out.println(e.carName));
+		
+		System.out.println();
+		System.out.println("4:");
+		System.out.println();
+		carList.stream().filter(e -> e.cylinders != 8).forEach(e -> System.out.println(e.carName));
+		
+		System.out.println();
+		System.out.println("5:");
+		System.out.println();
+		carList.stream().filter(e -> e.carName.contains("toyota")).forEach(e -> System.out.println(e.carName));
+
 		
 	}
 	
 	public static ArrayList<CarMPGEntry> readCarMPGEntryDataFromFile(){
 		ArrayList<CarMPGEntry> carList = new ArrayList<CarMPGEntry>();
-		Stream<CarMPGEntry> strCars = carList.stream();
-		/*  1  */ System.out.println(strCars);
-		/*  2  */ 
+
+		
 		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("auto-mpg.data"));
